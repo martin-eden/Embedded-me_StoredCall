@@ -12,6 +12,17 @@ your collection.
   * arduino-cli
   * bash
 
+## Sample output
+
+```
+[me_StoredCall] We are here.
+Added handler.
+We'll chill a bit and call it with different arguments.
+[TSomeClass.OnRun](3): Last data was 0.
+[TSomeClass.OnRun](12): Last data was 3.
+[TSomeClass.OnRun](2): Last data was 12.
+[me_StoredCall] Done.
+```
 
 ## Install
 
