@@ -7,11 +7,6 @@ Store address now, call it later. Arduino library.
 Because you want sort of `onClick` events for different items in
 your collection.
 
-## Requirements
-
-  * arduino-cli
-  * bash
-
 ## Sample output
 
 ```
@@ -24,30 +19,29 @@ We'll chill a bit and call it with different arguments.
 [me_StoredCall] Done.
 ```
 
-## Install
+## Code
 
-Run [Install.sh](Install.sh).
+* [Example](examples/me_StoredCall/me_StoredCall.ino)
+* [Interface](src/me_StoredCall.h)
+* [Implementation](src/me_StoredCall.cpp)
 
+## Requirements
 
-## Remove
+  * arduino-cli
+  * bash
 
-Run [Remove.sh](Remove.sh).
+## Install/Remove
 
+[Install.sh](Install.sh)
+[Remove.sh](Remove.sh)
 
-# Compile
+## Compile
 
 Zero-warnings compilation:
 
 ```bash
 arduino-cli compile --fqbn arduino:avr:uno --quiet --warnings all . --build-property compiler.cpp.extra_flags="-std=c++1z"
 ```
-
-# Code
-
-* [Interface](src/me_StoredCall.h)
-* [Implementation](src/me_StoredCall.cpp)
-* [Example](examples/me_StoredCall/me_StoredCall.ino)
-
 
 # See also
 
