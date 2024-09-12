@@ -3,7 +3,7 @@
 /*
   Author: Martin Eden
   Version: 1
-  Last mod.: 2024-06-29
+  Last mod.: 2024-09-12
 */
 
 #pragma once
@@ -12,10 +12,6 @@
 
 namespace me_StoredCall
 {
-  using
-    me_BaseTypes::TMethod,
-    me_BaseTypes::TUint_2;
-
   /*
     Delayed method call
 
