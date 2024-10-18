@@ -2,8 +2,7 @@
 
 /*
   Author: Martin Eden
-  Version: 1
-  Last mod.: 2024-09-12
+  Last mod.: 2024-10-18
 */
 
 #pragma once
@@ -20,17 +19,22 @@ namespace me_StoredCall
   struct TStoredCall
   {
     TMethod Handler;
-    TUint_2 Upvalues;
+    TUint_2 Instance;
 
-    // Zeroing init
-    TStoredCall(): Handler(0), Upvalues(0) {};
-    // Store handler and upvalues
-    void Set(TMethod Handler, TUint_2 Upvalues);
     // Call with external data
     void Run(TUint_2 Data = 0);
   };
+
+  namespace Freetown
+  {
+    TStoredCall ToStoredCall(
+      TMethod Handler,
+      TUint_2 Instance
+    );
+  }
 }
 
 /*
   2024-06-29
+  2024-10-18
 */
