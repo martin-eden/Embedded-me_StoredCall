@@ -2,24 +2,22 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2024-09-12
+  Last mod.: 2024-10-23
 */
 
 #include <me_StoredCall.h>
 
-#include <me_UartSpeeds.h>
-#include <me_InstallStandardStreams.h>
 #include <me_BaseTypes.h>
+#include <me_UartSpeeds.h>
+#include <me_Console.h>
 
 void setup()
 {
   Serial.begin(me_UartSpeeds::Arduino_Normal_Bps);
 
-  InstallStandardStreams();
-
-  printf("[me_StoredCall] We are here.\n");
+  Console.Print("[me_StoredCall] We are here.");
   Test();
-  printf("[me_StoredCall] Done.\n");
+  Console.Print("[me_StoredCall] Done.");
 }
 
 void loop()
@@ -43,11 +41,14 @@ class TSomeClass
 
 void TSomeClass::OnRun(TUint_2 Data)
 {
-  printf("[TSomeClass.OnRun](%u)", Data);
-
-  printf(": Last data was %u.", LastData);
-
-  printf("\n");
+  Console.Write("OnRun (");
+  Console.Print(Data);
+  Console.Write(")");
+  Console.Write(" ");
+  Console.Write("Last data (");
+  Console.Print(LastData);
+  Console.Write(")");
+  Console.EndLine();
 
   LastData = Data;
 }
@@ -57,10 +58,10 @@ void TSomeClass::OnRun(TUint_2 Data)
 */
 void OnRun_wrap(
   TUint_2 Data,
-  TUint_2 Upvalues
+  TUint_2 Instance
 )
 {
-  TSomeClass * SomeClass = (TSomeClass *) Upvalues;
+  TSomeClass * SomeClass = (TSomeClass *) Instance;
   SomeClass->OnRun(Data);
 }
 
@@ -77,7 +78,11 @@ me_StoredCall::TStoredCall StoredCall;
 */
 void AddHandler()
 {
-  StoredCall.Set(OnRun_wrap, (TUint_2) &SomeClass);
+  using
+    me_StoredCall::Freetown::ToStoredCall;
+
+  StoredCall = ToStoredCall(OnRun_wrap, (TUint_2) &SomeClass);
+  Console.Print("Added handler.");
 }
 
 // --
@@ -87,26 +92,28 @@ void AddHandler()
 */
 void Test()
 {
-  AddHandler();
-  printf("Added handler.\n");
+  TUint_2 MaxRandom = 0xFFFF;
 
-  printf("We'll chill a bit and call it with different arguments.\n");
+  AddHandler();
+
+  Console.Print("We'll chill a bit and call handler with different arguments.");
 
   randomSeed(analogRead(A0));
 
   delay(1500);
 
-  StoredCall.Run(random(20));
+  StoredCall.Run(random(MaxRandom));
 
   delay(1000);
 
-  StoredCall.Run(random(20));
+  StoredCall.Run(random(MaxRandom));
 
   delay(660);
 
-  StoredCall.Run(random(20));
+  StoredCall.Run(random(MaxRandom));
 }
 
 /*
   2024-06-29
+  2024-10-23
 */
