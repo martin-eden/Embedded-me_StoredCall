@@ -30,14 +30,9 @@ OnRun ( 28846 ) Last data ( 38349 )
   * arduino-cli
   * bash
 
-## Install
+## Install/remove
 
-Run [Install.sh](Install.sh).
-
-
-## Remove
-
-Run [Remove.sh](Remove.sh).
+Easy way is to clone [GetLibs][GetLibs] repo and run it's code.
 
 ## Compile
 
@@ -55,6 +50,8 @@ arduino-cli compile --fqbn arduino:avr:uno --quiet --warnings all . --build-prop
 [Example]: examples/me_StoredCall/me_StoredCall.ino
 [Interface]: src/me_StoredCall.h
 [Implementation]: src/me_StoredCall.cpp
+
+[GetLibs]: https://github.com/martin-eden/Embedded-Framework-GetLibs
 
 [Embedded]: https://github.com/martin-eden/Embedded_Crafts/tree/master/Parts
 [Repos]: https://github.com/martin-eden/contents
