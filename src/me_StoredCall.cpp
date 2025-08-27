@@ -2,17 +2,22 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2024-12-20
+  Last mod.: 2025-08-27
 */
 
 #include <me_StoredCall.h>
+
+#include <me_BaseTypes.h>
+#include <me_BaseInterfaces.h>
 
 using namespace me_StoredCall;
 
 /*
   Invoke with external data
 */
-void TStoredCall::Run(TUint_2 Data)
+void TStoredCall::Run(
+  TUint_2 Data
+)
 {
   if (Handler == 0)
     return;
