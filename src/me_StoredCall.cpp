@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-27
+  Last mod.: 2025-09-19
 */
 
 #include <me_StoredCall.h>
@@ -29,7 +29,7 @@ void TStoredCall::Run(
 
 TStoredCall Freetown::ToStoredCall(
   TMethod Handler,
-  TUint_2 Instance
+  TAddress Instance
 )
 {
   TStoredCall Result;

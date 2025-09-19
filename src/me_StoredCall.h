@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-27
+  Last mod.: 2025-09-19
 */
 
 #pragma once
@@ -20,7 +20,7 @@ namespace me_StoredCall
   struct TStoredCall
   {
     TMethod Handler;
-    TUint_2 Instance;
+    TAddress Instance;
 
     // Call with external data
     void Run(TUint_2 Data = 0);
@@ -30,7 +30,7 @@ namespace me_StoredCall
   {
     TStoredCall ToStoredCall(
       TMethod Handler,
-      TUint_2 Instance
+      TAddress Instance
     );
   }
 }

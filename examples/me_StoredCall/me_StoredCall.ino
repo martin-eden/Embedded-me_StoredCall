@@ -44,7 +44,7 @@ void TSomeClass::OnRun(TUint_2 Data)
 */
 void OnRun_wrap(
   TUint_2 Data,
-  TUint_2 Instance
+  TAddress Instance
 )
 {
   TSomeClass * SomeClass = (TSomeClass *) Instance;
@@ -67,7 +67,7 @@ void AddHandler()
   using
     me_StoredCall::Freetown::ToStoredCall;
 
-  StoredCall = ToStoredCall(OnRun_wrap, (TUint_2) &SomeClass);
+  StoredCall = ToStoredCall(OnRun_wrap, (TAddress) &SomeClass);
   Console.Print("Added handler.");
 }
 
