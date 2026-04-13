@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-19
+  Last mod.: 2026-04-13
 */
 
 #include <me_StoredCall.h>
@@ -15,40 +15,28 @@
 
 /*
   Sample class for stored call demonstration
-
-  I want internal state and handler with argument printing.
 */
 class TSomeClass
 {
-  TUint_2 LastData = 0;
-
   public:
-    void OnRun(TUint_2 Data);
+    void OnRun();
 };
 
-void TSomeClass::OnRun(TUint_2 Data)
+void TSomeClass::OnRun()
 {
-  Console.Write("OnRun (");
-  Console.Print(Data);
-  Console.Write(")");
-  Console.Write("Last data (");
-  Console.Print(LastData);
-  Console.Write(")");
-  Console.EndLine();
-
-  LastData = Data;
+  Console.Print("OnRun()");
 }
 
 /*
-  Ugly wrapper for class method
+  Class method caller
 */
 void OnRun_wrap(
-  TUint_2 Data,
   TAddress Instance
 )
 {
   TSomeClass * SomeClass = (TSomeClass *) Instance;
-  SomeClass->OnRun(Data);
+
+  SomeClass->OnRun();
 }
 
 // --
@@ -68,6 +56,7 @@ void AddHandler()
     me_StoredCall::Freetown::ToStoredCall;
 
   StoredCall = ToStoredCall(OnRun_wrap, (TAddress) &SomeClass);
+
   Console.Print("Added handler.");
 }
 
@@ -78,25 +67,17 @@ void AddHandler()
 */
 void Test()
 {
-  TUint_2 MaxRandom = 0xFFFF;
-
   AddHandler();
 
-  Console.Print("We'll chill a bit and call handler with different arguments.");
-
-  randomSeed(analogRead(A0));
+  Console.Print("We'll call handler several times.");
 
   me_Delays::Delay_Ms(1500);
-
-  StoredCall.Run(random(MaxRandom));
-
+  StoredCall.Run();
   me_Delays::Delay_Ms(1000);
-
-  StoredCall.Run(random(MaxRandom));
-
+  StoredCall.Run();
   me_Delays::Delay_Ms(660);
-
-  StoredCall.Run(random(MaxRandom));
+  StoredCall.Run();
+  me_Delays::Delay_Ms(420);
 }
 
 // --
@@ -120,4 +101,5 @@ void loop()
   2024-06-29
   2024-10-23
   2025-09-19
+  2026-04-13
 */
