@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-19
+  Last mod.: 2026-04-13
 */
 
 #pragma once
@@ -19,23 +19,20 @@ namespace me_StoredCall
   */
   struct TStoredCall
   {
-    TMethod Handler;
+    TCallback Method;
     TAddress Instance;
 
-    // Call with external data
-    void Run(TUint_2 Data = 0);
+    void Run();
   };
 
   namespace Freetown
   {
-    TStoredCall ToStoredCall(
-      TMethod Handler,
-      TAddress Instance
-    );
+    TStoredCall ToStoredCall(TCallback, TAddress);
   }
 }
 
 /*
   2024-06-29
   2024-10-18
+  2026-04-13
 */

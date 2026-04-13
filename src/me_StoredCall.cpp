@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-19
+  Last mod.: 2026-04-13
 */
 
 #include <me_StoredCall.h>
@@ -13,31 +13,23 @@
 using namespace me_StoredCall;
 
 /*
-  Invoke with external data
+  Invoke
 */
-void TStoredCall::Run(
-  TUint_2 Data
-)
+void TStoredCall::Run()
 {
-  if (Handler == 0)
-    return;
+  if ((TUint_2) Method == 0) return;
 
-  Handler(Data, Instance);
+  Method(Instance);
 }
 
 // ( Freetown
 
 TStoredCall Freetown::ToStoredCall(
-  TMethod Handler,
+  TCallback Method,
   TAddress Instance
 )
 {
-  TStoredCall Result;
-
-  Result.Handler = Handler;
-  Result.Instance = Instance;
-
-  return Result;
+  return { .Method = Method, .Instance = Instance };
 }
 
 // ) Freetown
@@ -45,4 +37,5 @@ TStoredCall Freetown::ToStoredCall(
 /*
   2024-06-29
   2024-10-18
+  2026-04-13
 */
